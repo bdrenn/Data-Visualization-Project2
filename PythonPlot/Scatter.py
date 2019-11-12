@@ -11,10 +11,10 @@ path = Path(os.getcwd()).parent
 output_data_dir = path / 'OutputData'
 graph_expert_data_dir = output_data_dir / 'GraphExpertData.csv'
 
-#Data Object 
+#Graph Expert Data Object 
 graph_expert_data = Data.GraphExpertData(graph_expert_data_dir)
-array = graph_expert_data.ScanPathLength()
-print(array)
+scanpath = graph_expert_data.ScanPathLength()
+task_success = graph_expert_data.TaskSuccess()
 
 
 
