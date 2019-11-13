@@ -169,11 +169,17 @@ high_annotations_general = [dict(x="temp",
                          ax=0, ay=-40)]
 high_annotations_both = [dict(x="temp",
                          y=high_score_graphs, 
+                         font=dict(
+                            color="green"
+                         ),
                          xref="x", yref="y",
                          text="High Score Graph:<br> %.2f" % high_score_graphs,
                          ax=0, ay=-40),
                     dict(x="temp",
                          y=high_score_trees,
+                         font=dict(
+                            color="blue"
+                         ),
                          xref="x", yref="y",
                          text="High Score Tree:<br> %.2f" % high_score_trees,
                          ax=0, ay=-40)]
