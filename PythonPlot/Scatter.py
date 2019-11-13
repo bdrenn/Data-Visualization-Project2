@@ -4,6 +4,7 @@ import numpy as np
 import os 
 import Preprocess as Data
 from pathlib import Path
+import plotly.offline as offline
 
 # Root Directory
 path = Path(os.getcwd()).parent
@@ -215,4 +216,5 @@ fig.update_layout(
     margin=dict(l=250),
 )
 
+offline.plot(fig,filename="Visualization.html")
 fig.show()
