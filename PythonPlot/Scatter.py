@@ -2,7 +2,7 @@ import plotly.graph_objects as go
 import plotly
 import numpy as np
 import os 
-import Preprocess as Data
+import Preprocess 
 from pathlib import Path
 import plotly.offline as offline
 
@@ -28,25 +28,25 @@ tree_general_data_dir = output_data_dir / 'TreeGeneralData.csv'
 
 
 #Tree Expert Data Object 
-tree_expert_data = Data.TreeExpertData(tree_expert_data_dir)
+tree_expert_data = Preprocess.TreeExpertData(tree_expert_data_dir)
 scanpath_tree_expert = tree_expert_data.ScanPathLength() # X-axis
 task_success_tree_expert = tree_expert_data.TaskSuccess() # Y-axis
 average_saccade_tree_expert = tree_expert_data.AverageSaccadeLength() # Hover
 
 #Tree General Data Object
-tree_general_data = Data.TreeGeneralData(tree_general_data_dir)
+tree_general_data = Preprocess.TreeGeneralData(tree_general_data_dir)
 scanpath_tree_general = tree_general_data.ScanPathLength() # X-axis
 task_success_tree_general = tree_general_data.TaskSuccess() # Y-axis
 average_saccade_tree_general = tree_general_data.AverageSaccadeLength() # Hover
 
 #Graph Expert Data Object 
-graph_expert_data = Data.GraphExpertData(graph_expert_data_dir)
+graph_expert_data = Preprocess.GraphExpertData(graph_expert_data_dir)
 scanpath_graph_expert = graph_expert_data.ScanPathLength() # X-axis
 task_success_graph_expert = graph_expert_data.TaskSuccess() # Y-axis
 average_saccade_graph_expert = graph_expert_data.AverageSaccadeLength() # Hover
 
 #Graph General Data Object
-graph_general_data = Data.GraphGeneralData(graph_general_data_dir)
+graph_general_data = Preprocess.GraphGeneralData(graph_general_data_dir)
 scanpath_graph_general = graph_general_data.ScanPathLength() # X-axis
 task_success_graph_general = graph_general_data.TaskSuccess() # Y-axis
 average_saccade_graph_general = graph_general_data.AverageSaccadeLength() # Hover
@@ -71,8 +71,8 @@ fig.add_trace(
                text = average_saccade_graph_expert,
                hovertemplate=
                     "Task Success: %{y}<br>" +
-                    "Scanpath: %{x}<br>" +
-                    "Average Saccade Length: %{text}" +
+                    "Scanpath: %{x:.2f}<br>" +
+                    "Average Saccade Length: %{text:.2f}" +
                     "<extra></extra>",
                mode='markers',
                marker=dict(
@@ -88,8 +88,8 @@ fig.add_trace(
                text = average_saccade_graph_general,
                hovertemplate=
                     "Task Success: %{y}<br>" +
-                    "Scanpath: %{x}<br>" +
-                    "Average Saccade Length: %{text}" +
+                    "Scanpath: %{x:.2f}<br>" +
+                    "Average Saccade Length: %{text:.2f}" +
                     "<extra></extra>",
                name="General Graph",
                mode='markers',
@@ -105,8 +105,8 @@ fig.add_trace(
                text = average_saccade_tree_expert,
                hovertemplate=
                     "Task Success: %{y}<br>" +
-                    "Scanpath: %{x}<br>" +
-                    "Average Saccade Length: %{text}" +
+                    "Scanpath: %{x:.2f}<br>" +
+                    "Average Saccade Length: %{text:.2f}" +
                     "<extra></extra>",
                mode='markers',
                marker=dict(
@@ -122,8 +122,8 @@ fig.add_trace(
                text = average_saccade_tree_expert,
                hovertemplate=
                     "Task Success: %{y}<br>" +
-                    "Scanpath: %{x}<br>" +
-                    "Average Saccade Length: %{text}" +
+                    "Scanpath: %{x:.2f}<br>" +
+                    "Average Saccade Length: %{text:.2f}" +
                     "<extra></extra>",
                name="General Tree",
                mode='markers',
