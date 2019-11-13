@@ -51,6 +51,8 @@ high_score_tree_expert = task_success_tree_expert.max()
 high_score_tree_general = task_success_tree_general.max()
 high_score_graph_expert = task_success_graph_expert.max()
 high_score_graph_general = task_success_graph_general.max()
+high_score_graphs = np.maximum(high_score_graph_expert,high_score_graph_general)
+high_score_trees = np.maximum(high_score_tree_expert,high_score_tree_general)
 
 
 # Plot
@@ -62,8 +64,10 @@ fig.add_trace(
                y=task_success_graph_expert,
                mode='markers',
                marker=dict(
-                   size=20
+                   size=20,
+                   color='red'
                ),
+               visible=True,
                name="Expert Graph"))
 
 fig.add_trace(
@@ -72,7 +76,8 @@ fig.add_trace(
                name="General Graph",
                mode='markers',
                marker=dict(
-                   size=20
+                   size=20,
+                   color='green'
                ),
                visible=False))
 
@@ -81,8 +86,10 @@ fig.add_trace(
                y=task_success_tree_expert,
                mode='markers',
                marker=dict(
-                   size=20
+                   size=20,
+                   color='blue'
                ),
+               visible=True,
                name="Expert Tree"))
 
 fig.add_trace(
@@ -91,7 +98,8 @@ fig.add_trace(
                name="General Tree",
                mode='markers',
                marker=dict(
-                   size=20
+                   size=20,
+                   color='purple'
                ),
                visible=False))
 
@@ -100,34 +108,45 @@ fig.add_trace(
 high_annotations_expert = [dict(x="temp",
                          y=high_score_graph_expert,
                          xref="x", yref="y",
+                         font=dict(
+                            color="red"
+                         ),
                          text="High Score Graph:<br> %.2f" % high_score_graph_expert,
                          ax=0, ay=-40),
                     dict(x="temp",
                          y=high_score_tree_expert,
+                         font=dict(
+                            color="blue"
+                         ),
                          xref="x", yref="y",
                          text="High Score Tree:<br> %.2f" % high_score_tree_expert,
                          ax=0, ay=-40)]
 high_annotations_general = [dict(x="temp",
                          y=high_score_graph_general, 
+                         font=dict(
+                            color="green"
+                         ),
                          xref="x", yref="y",
                          text="High Score Graph:<br> %.2f" % high_score_graph_general,
                          ax=0, ay=-40),
                     dict(x="temp",
                          y=high_score_tree_expert,
                          xref="x", yref="y",
+                         font=dict(
+                            color="purple"
+                         ),
                          text="High Score Tree:<br> %.2f" % high_score_tree_general,
                          ax=0, ay=-40)]
-
-# low_annotations = [dict(x="2015-05-01",
-#                         y=df.Low.mean(),
-#                         xref="x", yref="y",
-#                         text="Low Average:<br> %.2f" % df.Low.mean(),
-#                         ax=-40, ay=40),
-#                    dict(x=df.High.idxmin(),
-#                         y=df.Low.min(),
-#                         xref="x", yref="y",
-#                         text="Low Min:<br> %.2f" % df.Low.min(),
-#                         ax=0, ay=40)]
+high_annotations_both = [dict(x="temp",
+                         y=high_score_graphs, 
+                         xref="x", yref="y",
+                         text="High Score Graph:<br> %.2f" % high_score_graphs,
+                         ax=0, ay=-40),
+                    dict(x="temp",
+                         y=high_score_trees,
+                         xref="x", yref="y",
+                         text="High Score Tree:<br> %.2f" % high_score_trees,
+                         ax=0, ay=-40)]
 
 fig.update_layout(
     updatemenus=[
@@ -140,24 +159,31 @@ fig.update_layout(
             buttons=list([
                 dict(label="Expert",
                      method="update",
-                     args=[{"visible": [True, False, True, False]},
+                     args=[{"visible": [True, False, True, False,True]},
                      {"annotations": high_annotations_expert}]),
                 dict(label="General",
                      method="update",
-                     args=[{"visible": [False, True, False, True]},
+                     args=[{"visible": [False, True, False, True,False]},
                      {"annotations": high_annotations_general}]),
                 dict(label="Both",
                      method="update",
-                     args=[{"visible": [True, True, True, True]},
-                     {"annotations": high_annotations_expert}]),
+                     args=[{"visible": [True, True, True, True,False]},
+                     {"annotations": high_annotations_both}]),
             ]),
         )
     ])
 
 # Set title
 fig.update_layout(
-    title_text="Experiment",
-    margin=dict(l=200),
+    title="Participant Success and Scanpath length",
+    xaxis_title="Scanpath Length",
+    yaxis_title="Task Success",
+    font=dict(
+        family="Courier New, monospace",
+        size=18,
+        color="black"
+    ),
+    margin=dict(l=250),
 )
 
 fig.show()
