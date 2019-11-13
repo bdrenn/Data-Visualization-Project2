@@ -84,17 +84,17 @@ high_score_graph_expert = task_success_graph_expert.max()
 high_score_graph_general = task_success_graph_general.max()
 
 
-# # # Add Annotations and Buttons
-# high_annotations = [dict(x="2016-03-01",
-#                          y=high_score_graph_expert, 
-#                          xref="x", yref="y",
-#                          text="High Score Graph Expert:<br> %.2f" % high_score_graph_expert,
-#                          ax=0, ay=-40),
-#                     dict(x="temp",
-#                          y=high_score_graph_general,
-#                          xref="x", yref="y",
-#                          text="High Score Graph General:<br> %.2f" % high_score_graph_general,
-#                          ax=0, ay=-40)]
+# # Add Annotations and Buttons
+high_annotations_expert = [dict(x="temp",
+                         y=high_score_graph_expert, 
+                         xref="x", yref="y",
+                         text="High Score Graph:<br> %.2f" % high_score_graph_expert,
+                         ax=0, ay=-40),
+                    dict(x="temp",
+                         y=high_score_tree_expert,
+                         xref="x", yref="y",
+                         text="High Score Tree:<br> %.2f" % high_score_graph_general,
+                         ax=0, ay=-40)]
 # low_annotations = [dict(x="2015-05-01",
 #                         y=df.Low.mean(),
 #                         xref="x", yref="y",
@@ -117,7 +117,8 @@ fig.update_layout(
             buttons=list([
                 dict(label="None",
                      method="update",
-                     args=[{"visible": [True, False, True, False]}]),
+                     args=[{"visible": [True, False, True, False]},
+                           {'annotations': high_annotations_expert}]),
                 dict(label="Graph",
                      method="update",
                      args=[{"visible": [True, True, False, False]}]),
