@@ -32,24 +32,28 @@ tree_expert_data = Preprocess.TreeExpertData(tree_expert_data_dir)
 scanpath_tree_expert = tree_expert_data.ScanPathLength() # X-axis
 task_success_tree_expert = tree_expert_data.TaskSuccess() # Y-axis
 average_saccade_tree_expert = tree_expert_data.AverageSaccadeLength() # Hover
+average_success_tree_expert = tree_expert_data.AverageTaskSuccess() # Line
 
 #Tree General Data Object
 tree_general_data = Preprocess.TreeGeneralData(tree_general_data_dir)
 scanpath_tree_general = tree_general_data.ScanPathLength() # X-axis
 task_success_tree_general = tree_general_data.TaskSuccess() # Y-axis
 average_saccade_tree_general = tree_general_data.AverageSaccadeLength() # Hover
+average_success_tree_general = tree_general_data.AverageTaskSuccess() # Line
 
 #Graph Expert Data Object 
 graph_expert_data = Preprocess.GraphExpertData(graph_expert_data_dir)
 scanpath_graph_expert = graph_expert_data.ScanPathLength() # X-axis
 task_success_graph_expert = graph_expert_data.TaskSuccess() # Y-axis
 average_saccade_graph_expert = graph_expert_data.AverageSaccadeLength() # Hover
+average_success_graph_expert = graph_expert_data.AverageTaskSuccess() # Line 
 
 #Graph General Data Object
 graph_general_data = Preprocess.GraphGeneralData(graph_general_data_dir)
 scanpath_graph_general = graph_general_data.ScanPathLength() # X-axis
 task_success_graph_general = graph_general_data.TaskSuccess() # Y-axis
 average_saccade_graph_general = graph_general_data.AverageSaccadeLength() # Hover
+average_success_graph_general = graph_general_data.AverageTaskSuccess() # Line
 
 
 #High Scores     
@@ -59,6 +63,7 @@ high_score_graph_expert = task_success_graph_expert.max()
 high_score_graph_general = task_success_graph_general.max()
 high_score_graphs = np.maximum(high_score_graph_expert,high_score_graph_general)
 high_score_trees = np.maximum(high_score_tree_expert,high_score_tree_general)
+
 
 
 # Plot
@@ -132,6 +137,25 @@ fig.add_trace(
                    color='purple'
                ),
                visible=False))
+
+# Average Success Graph Expert
+fig.add_shape(
+        go.layout.Shape(
+            type="line",
+            xref="x",
+            yref="y",
+            x0=0,
+            y0=average_success_graph_expert,
+            x1=1500000,
+            y1=average_success_graph_expert,
+            line=dict(
+                color="MediumPurple",
+                width=4,
+                dash="dash",
+            ),
+            visible=True
+
+))
 
 
 # # Add Annotations and Buttons
@@ -221,6 +245,7 @@ fig.update_layout(
     ),
     margin=dict(l=250),
 )
+fig.update_xaxes(range=[0, 1500000])
 
 offline.plot(fig,filename="Visualization.html")
 fig.show()
