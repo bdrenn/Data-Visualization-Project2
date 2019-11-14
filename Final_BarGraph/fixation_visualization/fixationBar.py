@@ -15,11 +15,25 @@ ETree_fixTime = df1['average_fixation']
 ETree_width = df1['total_people']
 
 fig = go.Figure(
-    data=[go.Bar(x=EGraph_minute,y=EGraph_fixTime,width= EGraph_width/10),
-        go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/10)],
+    data=[go.Bar(x=EGraph_minute,y=EGraph_fixTime,width= EGraph_width/10, showlegend=False),
+        go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/10, showlegend=False)],
 
-    layout=go.Layout(barmode='overlay')
+    layout=go.Layout(barmode='overlay'),
+
 )
+
+fig.add_trace(go.Bar(x=EGraph_minute, y=EGraph_fixTime,width= EGraph_width/10,name="Expert Graph"))
+
+fig.add_trace(go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/10,name="Expert Tree"))
+
+fig.update_layout(
+    legend=go.layout.Legend(
+        x=0,
+        y=1,
+
+    )
+)
+
 
 fig.show()
 
