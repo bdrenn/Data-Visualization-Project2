@@ -302,7 +302,7 @@ fig.update_layout(
     ),
     margin=dict(l=250),
 )
-fig.update_xaxes(range=[0, 1700000])
+fig.update_xaxes(range=[0,1700000])
 fig.update_yaxes(range=[0,1])
 
 offline.plot(fig,filename="Visualization.html")
