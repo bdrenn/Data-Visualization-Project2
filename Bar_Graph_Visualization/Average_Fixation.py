@@ -30,9 +30,6 @@ def mk_Average_Fixation_File(source, target, Max_Time_Minutes, Time_Interval):
                 if int(fixation[1]) < ((minute +1) * Time_Interval):
                     if (((minute + 1) * Time_Interval) - Time_Interval) < int(fixation[1]) < ((minute + 1) * Time_Interval):
                         if int(fixation[1]) + int(fixation[2]) < ((minute + 1) * Time_Interval):
-                            # print(str(minute) + ' ' + str(fixation) + ' ' + str(minute * Time_Interval - Time_Interval))
-                            # print(int(fixation[1]) + int(fixation[2]))
-                            # increment the amount of people for average
                             if first_time:
                                 Array_Avg[minute][0] += 1
                                 first_time = False
@@ -56,12 +53,6 @@ def mk_Average_Fixation_File(source, target, Max_Time_Minutes, Time_Interval):
     for x in range(Max_Time_Minutes):
         if Array_Avg[x][0] > 0:
             Array_Avg[x][1] = Array_Avg[x][1] / Array_Avg[x][0] / 1000
-            # Array_Avg[x][0] = str(Array_Avg[x][0])
-
-    print(Array_Avg)
-    # with open(target, 'w') as filehandle:
-    #     for listitem in Array_Avg:
-    #         filehandle.write('%s\n' % listitem)
 
     with open(target, 'w') as myfile:
         wr = csv.writer(myfile)
