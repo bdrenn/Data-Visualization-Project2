@@ -22,6 +22,7 @@ fig = go.Figure(
         barmode='overlay',
         bargap = 1.0)
 )
+fig.update_traces(opacity=0.6)#this makes both transparent...
 
 # fig.show()
 fig.write_html('first_figure.html', auto_open=True)
