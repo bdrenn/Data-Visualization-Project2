@@ -153,8 +153,61 @@ fig.add_shape(
                 width=4,
                 dash="dash",
             ),
-            visible=True
+            visible=False
+))
 
+# Average Success Graph General
+fig.add_shape(
+        go.layout.Shape(
+            type="line",
+            xref="x",
+            yref="y",
+            x0=0,
+            y0=average_success_graph_general,
+            x1=1500000,
+            y1=average_success_graph_general,
+            line=dict(
+                color="MediumPurple",
+                width=4,
+                dash="dash",
+            ),
+            visible=False
+))
+
+# Average Success Tree Expert
+fig.add_shape(
+        go.layout.Shape(
+            type="line",
+            xref="x",
+            yref="y",
+            x0=0,
+            y0=average_success_tree_expert,
+            x1=1500000,
+            y1=average_success_graph_expert,
+            line=dict(
+                color="MediumPurple",
+                width=4,
+                dash="dash",
+            ),
+            visible=False
+))
+
+# Average Success Tree General
+fig.add_shape(
+        go.layout.Shape(
+            type="line",
+            xref="x",
+            yref="y",
+            x0=0,
+            y0=average_success_tree_general,
+            x1=1500000,
+            y1=average_success_tree_general,
+            line=dict(
+                color="MediumPurple",
+                width=4,
+                dash="dash",
+            ),
+            visible=True
 ))
 
 
@@ -219,15 +272,15 @@ fig.update_layout(
             buttons=list([
                 dict(label="Expert",
                      method="update",
-                     args=[{"visible": [True, False, True, False,True]},
+                     args=[{"visible": [True, False, True, False,True,False,True,False]},
                      {"annotations": high_annotations_expert}]),
                 dict(label="General",
                      method="update",
-                     args=[{"visible": [False, True, False, True,False]},
+                     args=[{"visible": [False, True, False, True,False,True,False,True]},
                      {"annotations": high_annotations_general}]),
                 dict(label="Both",
                      method="update",
-                     args=[{"visible": [True, True, True, True,False]},
+                     args=[{"visible": [True, True, True, True,False,False,False,False]},
                      {"annotations": high_annotations_both}]),
             ]),
         )
