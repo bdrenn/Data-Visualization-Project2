@@ -18,7 +18,9 @@ fig = go.Figure(
     data=[go.Bar(x=EGraph_minute,y=EGraph_fixTime,width= EGraph_width/10),
         go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/10)],
 
-    layout=go.Layout(barmode='overlay')
+    layout=go.Layout(
+        barmode='overlay',
+        bargap = 1.0)
 )
 
 # fig.show()
