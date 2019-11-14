@@ -138,77 +138,37 @@ fig.add_trace(
                ),
                visible=False))
 
-# Average Success Graph Expert
-fig.add_shape(
-        go.layout.Shape(
-            type="line",
-            xref="x",
-            yref="y",
-            x0=0,
-            y0=average_success_graph_expert,
-            x1=1500000,
-            y1=average_success_graph_expert,
-            line=dict(
-                color="MediumPurple",
-                width=4,
-                dash="dash",
-            ),
-            visible=False
-))
+# Average Success Tree General
+fig.add_trace(
+    go.Scatter(x=[0,1500000],
+               y=[average_success_tree_general] * 15000,
+               name="Average Score Tree General",
+               visible=False,
+               line=dict(color="purple", dash="dash")))
 
 # Average Success Graph General
-fig.add_shape(
-        go.layout.Shape(
-            type="line",
-            xref="x",
-            yref="y",
-            x0=0,
-            y0=average_success_graph_general,
-            x1=1500000,
-            y1=average_success_graph_general,
-            line=dict(
-                color="MediumPurple",
-                width=4,
-                dash="dash",
-            ),
-            visible=False
-))
+fig.add_trace(
+    go.Scatter(x=[0,1500000],
+               y=[average_success_graph_general] * 15000,
+               name="Average Score Graph General",
+               visible=False,
+               line=dict(color='green', dash="dash")))
 
 # Average Success Tree Expert
-fig.add_shape(
-        go.layout.Shape(
-            type="line",
-            xref="x",
-            yref="y",
-            x0=0,
-            y0=average_success_tree_expert,
-            x1=1500000,
-            y1=average_success_graph_expert,
-            line=dict(
-                color="MediumPurple",
-                width=4,
-                dash="dash",
-            ),
-            visible=False
-))
+fig.add_trace(
+    go.Scatter(x=[0,1500000],
+               y=[average_success_tree_expert] * 15000,
+               name="Average Score Tree Expert",
+               visible=False,
+               line=dict(color="blue", dash="dash")))
 
-# Average Success Tree General
-fig.add_shape(
-        go.layout.Shape(
-            type="line",
-            xref="x",
-            yref="y",
-            x0=0,
-            y0=average_success_tree_general,
-            x1=1500000,
-            y1=average_success_tree_general,
-            line=dict(
-                color="MediumPurple",
-                width=4,
-                dash="dash",
-            ),
-            visible=True
-))
+# Average Success Graph Expert
+fig.add_trace(
+    go.Scatter(x=[0,1500000],
+               y=[average_success_graph_expert] * 15000,
+               name="Average Score Graph Expert",
+               visible=False,
+               line=dict(color="red", dash="dash")))
 
 
 # # Add Annotations and Buttons
@@ -272,15 +232,15 @@ fig.update_layout(
             buttons=list([
                 dict(label="Expert",
                      method="update",
-                     args=[{"visible": [True, False, True, False,True,False,True,False]},
+                     args=[{"visible": [True, False, True, False,False,False,True,True]},
                      {"annotations": high_annotations_expert}]),
                 dict(label="General",
                      method="update",
-                     args=[{"visible": [False, True, False, True,False,True,False,True]},
+                     args=[{"visible": [False, True, False, True,True,True,False,False]},
                      {"annotations": high_annotations_general}]),
                 dict(label="Both",
                      method="update",
-                     args=[{"visible": [True, True, True, True,False,False,False,False]},
+                     args=[{"visible": [True, True, True, True,True,True,True,True]},
                      {"annotations": high_annotations_both}]),
             ]),
         )
