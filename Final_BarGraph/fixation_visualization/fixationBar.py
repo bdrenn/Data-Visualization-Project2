@@ -21,5 +21,5 @@ fig = go.Figure(
     layout=go.Layout(barmode='overlay')
 )
 
-fig.show()
-
+# fig.show()
+fig.write_html('first_figure.html', auto_open=True)
