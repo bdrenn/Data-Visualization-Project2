@@ -1,6 +1,7 @@
 import csv
 import os
 import math
+import pandas as pd
 import sys
 
 def get_Max_Time(source, Time_Interval):
@@ -55,11 +56,25 @@ def mk_Average_Fixation_File(source, target, Max_Time_Minutes, Time_Interval):
     for x in range(Max_Time_Minutes):
         if Array_Avg[x][0] > 0:
             Array_Avg[x][1] = Array_Avg[x][1] / Array_Avg[x][0] / 1000
+            # Array_Avg[x][0] = str(Array_Avg[x][0])
 
     print(Array_Avg)
-    with open(target, 'w') as filehandle:
-        for listitem in Array_Avg:
-            filehandle.write('%s\n' % listitem)
+    # with open(target, 'w') as filehandle:
+    #     for listitem in Array_Avg:
+    #         filehandle.write('%s\n' % listitem)
+
+    with open(target, 'w') as myfile:
+        wr = csv.writer(myfile)
+        wr.writerows(Array_Avg)
+
+    myfile.close()
+    with open(target, 'r') as file:
+        lineless_target = target.replace('.csv', 'c.csv')
+        with open(lineless_target, 'w') as filel:
+            for line in file:
+                if not line.isspace():
+                    filel.write(line)
+
 
 test_csv = 'Data\Processed\Graph_Expert\p1.graphFXD.csv'
 test_csv2 = 'Data\Processed\Graph_Expert\p3.graphFXD.csv'
@@ -69,10 +84,15 @@ Graph_General_Target = r"Data\Processed\Graph_General\\"
 Tree_Expert_Target = r"Data\Processed\Tree_Expert\\"
 Tree_General_Target = r"Data\Processed\Tree_General\\"
 
-Graph_E_target = r"data\Processed\Final\Graph_E_Final.txt"
-Graph_G_target = r"data\Processed\Final\Graph_G_Final.txt"
-Tree_E_target = r"data\Processed\Final\Tree_E_Final.txt"
-Tree_G_target = r"data\Processed\Final\Tree_G_Final.txt"
+# Graph_E_target = r"data\Processed\Final\Graph_E_Final.txt"
+# Graph_G_target = r"data\Processed\Final\Graph_G_Final.txt"
+# Tree_E_target = r"data\Processed\Final\Tree_E_Final.txt"
+# Tree_G_target = r"data\Processed\Final\Tree_G_Final.txt"
+
+Graph_E_target = r"data\Processed\Final\Graph_E_Final.csv"
+Graph_G_target = r"data\Processed\Final\Graph_G_Final.csv"
+Tree_E_target = r"data\Processed\Final\Tree_E_Final.csv"
+Tree_G_target = r"data\Processed\Final\Tree_G_Final.csv"
 
 # minute : [amount of people, average time for that minute]
 Time_Interval = 60000  # one minute
