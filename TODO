@@ -5,8 +5,4 @@
 
 - Visualization
     - Refactor Scatter.py 
-    - Normaliza Scanpath Length
-    - Fix hover data format
-    - Coloring of `both` high_score text
-
-- 
+    - add average scanpath line

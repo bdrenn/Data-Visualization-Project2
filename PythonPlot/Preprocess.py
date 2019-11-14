@@ -18,6 +18,9 @@ class Data:
     def AverageTaskSuccess(self):
         return self.data_frame.Task_Success.mean()
 
+    def AverageScanpathLength(self):
+        return self.data_frame.scanpath.mean()
+
 
 class GraphExpertData(Data):
     pass

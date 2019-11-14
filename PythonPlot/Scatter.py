@@ -32,28 +32,33 @@ tree_expert_data = Preprocess.TreeExpertData(tree_expert_data_dir)
 scanpath_tree_expert = tree_expert_data.ScanPathLength() # X-axis
 task_success_tree_expert = tree_expert_data.TaskSuccess() # Y-axis
 average_saccade_tree_expert = tree_expert_data.AverageSaccadeLength() # Hover
-average_success_tree_expert = tree_expert_data.AverageTaskSuccess() # Line
+average_success_tree_expert = tree_expert_data.AverageTaskSuccess() # Line success
+average_scanpath_tree_expert = tree_expert_data.AverageScanpathLength() # Line scanpath
+
 
 #Tree General Data Object
 tree_general_data = Preprocess.TreeGeneralData(tree_general_data_dir)
 scanpath_tree_general = tree_general_data.ScanPathLength() # X-axis
 task_success_tree_general = tree_general_data.TaskSuccess() # Y-axis
 average_saccade_tree_general = tree_general_data.AverageSaccadeLength() # Hover
-average_success_tree_general = tree_general_data.AverageTaskSuccess() # Line
+average_success_tree_general = tree_general_data.AverageTaskSuccess() # Line success
+average_scanpath_tree_general = tree_general_data.AverageScanpathLength() # Line Scanpath
 
 #Graph Expert Data Object 
 graph_expert_data = Preprocess.GraphExpertData(graph_expert_data_dir)
 scanpath_graph_expert = graph_expert_data.ScanPathLength() # X-axis
 task_success_graph_expert = graph_expert_data.TaskSuccess() # Y-axis
 average_saccade_graph_expert = graph_expert_data.AverageSaccadeLength() # Hover
-average_success_graph_expert = graph_expert_data.AverageTaskSuccess() # Line 
+average_success_graph_expert = graph_expert_data.AverageTaskSuccess() # Line success
+average_scanpath_graph_expert = graph_expert_data.AverageScanpathLength() # Line Scanpath
 
 #Graph General Data Object
 graph_general_data = Preprocess.GraphGeneralData(graph_general_data_dir)
 scanpath_graph_general = graph_general_data.ScanPathLength() # X-axis
 task_success_graph_general = graph_general_data.TaskSuccess() # Y-axis
 average_saccade_graph_general = graph_general_data.AverageSaccadeLength() # Hover
-average_success_graph_general = graph_general_data.AverageTaskSuccess() # Line
+average_success_graph_general = graph_general_data.AverageTaskSuccess() # Line success
+average_scanpath_graph_general = graph_general_data.AverageScanpathLength() # Line Scanpath
 
 
 #High Scores     
@@ -69,7 +74,8 @@ high_score_trees = np.maximum(high_score_tree_expert,high_score_tree_general)
 # Plot
 fig = go.Figure()
 
-# Add Traces
+##################################### Traces #######################################
+# graph expert trace 
 fig.add_trace(
     go.Scatter(x=scanpath_graph_expert,
                y=task_success_graph_expert,
@@ -87,6 +93,7 @@ fig.add_trace(
                visible=True,
                name="Expert Graph"))
 
+# graph general trace 
 fig.add_trace(
     go.Scatter(x=scanpath_graph_general,
                y=task_success_graph_general,
@@ -104,6 +111,7 @@ fig.add_trace(
                ),
                visible=False))
 
+# tree expert trace 
 fig.add_trace(
     go.Scatter(x=scanpath_tree_expert,
                y=task_success_tree_expert,
@@ -121,6 +129,7 @@ fig.add_trace(
                visible=True,
                name="Expert Tree"))
 
+#tree general trace
 fig.add_trace(
     go.Scatter(x=scanpath_tree_general,
                y=task_success_tree_general,
@@ -138,9 +147,11 @@ fig.add_trace(
                ),
                visible=False))
 
+######################## Lines ###########################################               
+
 # Average Success Tree General
 fig.add_trace(
-    go.Scatter(x=[0,1500000],
+    go.Scatter(x=[0,2000000],
                y=[average_success_tree_general] * 15000,
                name="Average Score Tree General",
                visible=False,
@@ -148,7 +159,7 @@ fig.add_trace(
 
 # Average Success Graph General
 fig.add_trace(
-    go.Scatter(x=[0,1500000],
+    go.Scatter(x=[0,1700000],
                y=[average_success_graph_general] * 15000,
                name="Average Score Graph General",
                visible=False,
@@ -156,7 +167,7 @@ fig.add_trace(
 
 # Average Success Tree Expert
 fig.add_trace(
-    go.Scatter(x=[0,1500000],
+    go.Scatter(x=[0,1700000],
                y=[average_success_tree_expert] * 15000,
                name="Average Score Tree Expert",
                visible=False,
@@ -164,11 +175,44 @@ fig.add_trace(
 
 # Average Success Graph Expert
 fig.add_trace(
-    go.Scatter(x=[0,1500000],
+    go.Scatter(x=[0,1700000],
                y=[average_success_graph_expert] * 15000,
                name="Average Score Graph Expert",
                visible=False,
                line=dict(color="red", dash="dash")))
+
+
+# Average Scanpath Graph General
+fig.add_trace(
+    go.Scatter(x=[average_scanpath_graph_general] * 15000,
+               y=[0,1],
+               name="Average Scanpath Graph General",
+               visible=False,
+               line=dict(color='green', dash="dash")))
+
+# Average Scanpath Tree General
+fig.add_trace(
+    go.Scatter(x=[average_scanpath_tree_general] * 15000,
+               y=[0,1],
+               name="Average Scanpath Tree General",
+               visible=False,
+               line=dict(color='purple', dash="dash")))
+
+# Average Scanpath Graph Expert
+fig.add_trace(
+    go.Scatter(x=[average_scanpath_graph_expert] * 15000,
+               y=[0,1],
+               name="Average Scanpath Graph Expert",
+               visible=False,
+               line=dict(color='red', dash="dash")))
+
+# Average Scanpath Tree Expert
+fig.add_trace(
+    go.Scatter(x=[average_scanpath_tree_expert] * 15000,
+               y=[0,1],
+               name="Average Scanpath Tree Expert",
+               visible=False,
+               line=dict(color='blue', dash="dash")))
 
 
 # # Add Annotations and Buttons
@@ -232,15 +276,15 @@ fig.update_layout(
             buttons=list([
                 dict(label="Expert",
                      method="update",
-                     args=[{"visible": [True, False, True, False,False,False,True,True]},
+                     args=[{"visible": [True, False, True, False,False,False,True,True,False,False,True,True]},
                      {"annotations": high_annotations_expert}]),
                 dict(label="General",
                      method="update",
-                     args=[{"visible": [False, True, False, True,True,True,False,False]},
+                     args=[{"visible": [False, True, False, True,True,True,False,False,True,True,False,False]},
                      {"annotations": high_annotations_general}]),
                 dict(label="Both",
                      method="update",
-                     args=[{"visible": [True, True, True, True,True,True,True,True]},
+                     args=[{"visible": [True, True, True, True,True,True,True,True,False,False,False,False]},
                      {"annotations": high_annotations_both}]),
             ]),
         )
@@ -258,7 +302,8 @@ fig.update_layout(
     ),
     margin=dict(l=250),
 )
-fig.update_xaxes(range=[0, 1500000])
+fig.update_xaxes(range=[0, 1700000])
+fig.update_yaxes(range=[0,1])
 
 offline.plot(fig,filename="Visualization.html")
 fig.show()
