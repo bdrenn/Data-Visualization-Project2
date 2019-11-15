@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-
+from plotly.subplots import make_subplots
 
 df = pd.read_csv("Graph_E_Finalc.csv")
 df1 = pd.read_csv("Tree_E_Finalc.csv")
@@ -20,7 +20,7 @@ fig = go.Figure(
 
     layout=go.Layout(
         title= {
-        'text': "Bar Graph Visualization",
+        'text': "Width: Amount of People Per Fixation Time by Minute",
         'y':0.9,
         'x':0.5,
         'xanchor': 'center',
@@ -28,7 +28,7 @@ fig = go.Figure(
         barmode='overlay',
         bargap = 1.0,
         xaxis_title = "Minutes",
-        yaxis_title = "Average Fixation Time")
+        yaxis_title = "Average Fixation Time",)
 )
 #fig.update_traces(opacity=0.6)#this makes both transparent...
 
