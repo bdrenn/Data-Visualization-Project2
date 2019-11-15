@@ -46,6 +46,5 @@ fig.update_layout(
 
 )
 
-fig.show()
-
-
+# fig.show()
+fig.write_html('first_figure.html', auto_open=True)
