@@ -15,14 +15,16 @@ ETree_fixTime = df1['average_fixation']
 ETree_width = df1['total_people']
 
 fig = go.Figure(
-    data=[go.Bar(x=EGraph_minute,y=EGraph_fixTime,width= EGraph_width/10),
-        go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/10)],
+    data=[go.Bar(x=EGraph_minute,y=EGraph_fixTime,width= EGraph_width/10,name='Graph'),
+        go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/10, opacity=0.7,name='Tree')],
 
     layout=go.Layout(
         barmode='overlay',
-        bargap = 1.0)
+        bargap = 1.0,
+        xaxis_title = "Minutes",
+        yaxis_title = "Average Fixation Time")
 )
-fig.update_traces(opacity=0.6)#this makes both transparent...
+#fig.update_traces(opacity=0.6)#this makes both transparent...
 
 # fig.show()
 fig.write_html('first_figure.html', auto_open=True)

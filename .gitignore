@@ -4,3 +4,4 @@ venv
 .DS_Store
 data/.DS_Store
 __pycache__
+Final_BarGraph/fixation_visualization/first_figure.html
