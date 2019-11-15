@@ -15,8 +15,14 @@ ETree_fixTime = df1['average_fixation']
 ETree_width = df1['total_people']
 
 fig = go.Figure(
-    data=[go.Bar(x=EGraph_minute,y=EGraph_fixTime,width= EGraph_width/10,name='Graph'),
-        go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/10, opacity=0.7,name='Tree')],
+    data=[go.Bar(x=EGraph_minute,y=EGraph_fixTime,width= EGraph_width/10,name='Graph', text = EGraph_width, hovertemplate =(
+    '<i>Fixation Time</i>: %{y}'+
+    '<br><i>Minute</i>: %{x}</br>'+
+    '<br><i>People</i>: <b>%{text}</b></br>')),
+        go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/10, opacity=0.7,name='Tree',text = ETree_width,hovertemplate =(
+    '<i>Fixation Time</i>: %{y}'+
+    '<br><i>Minute</i>: %{x}</br>'+
+    '<br><i>People</i>: <b>%{text}</b></br>'))],
 
     layout=go.Layout(
         title= {
