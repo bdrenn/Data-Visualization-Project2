@@ -16,20 +16,20 @@ ETree_width = df1['total_people']
 
 
 fig = go.Figure(
-    data=[go.Bar(x=EGraph_minute,y=EGraph_fixTime,width= EGraph_width/10, showlegend=False),
-        go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/10, showlegend=False)],
+    data=[go.Bar(x=EGraph_minute,y=EGraph_fixTime,width= EGraph_width/(EGraph_width.max() + 1), showlegend=False),
+        go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/(EGraph_width.max() + 1), showlegend=False)],
 
     layout=go.Layout(barmode='overlay'),
 
 )
 
-fig.add_trace(go.Bar(x=EGraph_minute, y=EGraph_fixTime,width= EGraph_width/10,
+fig.add_trace(go.Bar(x=EGraph_minute, y=EGraph_fixTime,width= EGraph_width/(EGraph_width.max() + 1),
                      name="Expert Graph",
                      text=EGraph_width,
                      hovertemplate="Minute: %{x} <br>Seconds: %{y}</br>Participants: %{text}"
                      ))
 
-fig.add_trace(go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/10,
+fig.add_trace(go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/(ETree_width.max() + 1),
                      name="Expert Tree",
                      text=ETree_width,
                      hovertemplate="Minute: %{x} <br>Seconds: %{y}</br>Participants: %{text}"
@@ -42,9 +42,10 @@ fig.update_layout(
     ),
     title_text='Graph and Tree Fixation Times',
     xaxis_title="Minutes",
-    yaxis_title="Fixation Time (seconds)"
-
+    yaxis_title="Fixation Time (seconds)",
+    bargap=1
 )
 
 # fig.show()
+fig.update_xaxes(dtick=1)
 fig.write_html('first_figure.html', auto_open=True)
