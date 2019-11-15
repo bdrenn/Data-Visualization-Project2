@@ -19,6 +19,12 @@ fig = go.Figure(
         go.Bar(x=ETree_minute, y=ETree_fixTime, width=ETree_width/10, opacity=0.7,name='Tree')],
 
     layout=go.Layout(
+        title= {
+        'text': "Bar Graph Visualization",
+        'y':0.9,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'},
         barmode='overlay',
         bargap = 1.0,
         xaxis_title = "Minutes",
