@@ -16,24 +16,18 @@ GTree_width = df1['total_people']
 
 
 fig = go.Figure(
-    data=[go.Bar(x=GGraph_minute,y=GGraph_fixTime,width= GGraph_width/10, showlegend=False),
-        go.Bar(x=GTree_minute, y=GTree_fixTime, width=GTree_width/10, showlegend=False)],
+    data=[go.Bar(x=GGraph_minute,y=GGraph_fixTime,width= GGraph_width/(GGraph_width.max() + 1),
+                 name="General Graph", text=GGraph_width,
+                 hovertemplate="Minute: %{x} <br>Seconds: %{y}</br>Participants: %{text}", showlegend=True),
+        go.Bar(x=GTree_minute, y=GTree_fixTime, width=GTree_width/(GGraph_width.max() + 1), opacity=.7,
+               name="General Tree",
+               text=GGraph_width, hovertemplate="Minute: %{x} <br>Seconds: %{y}</br>Participants: %{text}",
+               showlegend=True)],
 
     layout=go.Layout(barmode='overlay'),
 
 )
 
-fig.add_trace(go.Bar(x=GGraph_minute, y=GGraph_fixTime,width= GGraph_width/10,
-                     name="General Graph",
-                     text=GGraph_width,
-                     hovertemplate="Minute: %{x} <br>Seconds: %{y}</br>Participants: %{text}"
-                     ))
-
-fig.add_trace(go.Bar(x=GTree_minute, y=GTree_fixTime, width=GTree_width/10,
-                     name="General Tree",
-                     text=GTree_width,
-                     hovertemplate="Minute: %{x} <br>Seconds: %{y}</br>Participants: %{text}"
-                     ))
 
 fig.update_layout(
     legend=go.layout.Legend(
@@ -42,8 +36,11 @@ fig.update_layout(
     ),
     title_text='General Graph and Tree Fixation Times',
     xaxis_title="Minutes",
-    yaxis_title="Fixation Time (seconds)"
-
+    yaxis_title="Fixation Time (seconds)",
+    yaxis_dtick=15,
+    xaxis_dtick=1,
+    bargap=1,
+    yaxis_range=[0, 60]
 )
 
 # fig.show()
