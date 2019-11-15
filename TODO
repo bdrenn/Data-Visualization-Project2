@@ -3,12 +3,6 @@
 - Goal: 
     - Find whether Tree or Graph was a better Ontology for the experiment based on `ScanPath` and `Scores` for each user.
 
-
-- Create Visualization (Most likely Scatter Plot):
-    - Comparing Tree and Graph, therefore both should be present on the plot.
-        - Differentiate with coloring 
-    - Slider for score ranges: 
-        - Display only the users who scored within Range to minimize the amount of Data in the Frame at one instance.
-    - X-axis -> ScanPath Length
-    - Y-axis -> Score Range 
-    - Hover over each Point -> Average Saccade Length
+- Visualization
+    - Refactor Scatter.py 
+    - add average scanpath line
